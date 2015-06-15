@@ -23,7 +23,11 @@ if [ $1 ] ; then
         '-m')    
             host=$(grep -i $2 $myhosts | cut -f3 -d";")
             dirname=$(grep -i $2 $myhosts | cut -f1 -d";")
-            sshfs $host:/ $sshfsdirs$dirname
+            method=$(grep -i $2 $myhosts | cut -f2 -d";")
+            if [ $method = "ssh" ]
+            then sshfs $host:/ $sshfsdirs$dirname
+            else echo 'Only SSH hosts supports this feature.'
+            fi
             ;;    
         '-c')     
             host=$(grep -i $2 $myhosts | cut -f3 -d";")
@@ -33,11 +37,22 @@ if [ $1 ] ; then
             else $method $host
             fi
             ;;
+        '-e')
+            host=$(grep -i $2 $myhosts | cut -f3 -d";")
+            method=$(grep -i $2 $myhosts | cut -f2 -d";")
+            if [ $method = "ssh" ]
+            then $method $host $3
+            else echo 'Only SSH hosts supports this feature.'
+            fi
+            ;;
     esac
 else
-    echo 'ussage: connect-to [OPTION]/[HOST]'
+    echo 'ussage: connect-to [OPTION]/[HOST] [COMMAND]'
     echo '-c - Connect to host'
     echo '-l - List hosts'
-    echo '-m - Mount host by sshfs'
     echo '-s - Search host[-s]'
+    echo '-m - Mount host by sshfs (Only for ssh hosts)'
+    echo '-e - Execute command. (Only for ssh hosts)'
 fi
+
+

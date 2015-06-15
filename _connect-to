@@ -9,5 +9,6 @@ myhosts=$(cut -f1 -d";" < ~/.myhosts)
 
 _arguments "-c[Connect to host]:hostname:($myhosts)"\
            "-m[Mount sshfs]:hostname:($myhosts)" \
+           "-e[Execute command]:hostname:($myhosts)" \
            "-l[List hosts]:hostname:" \
            "-s[Search host\[s\]]:hostname:$2"
