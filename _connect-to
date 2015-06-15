@@ -1,0 +1,13 @@
+#compdef connect-to
+
+# zsh completion for connect-to script
+# Written by Aleksey Philippov <alks.philippov@gmail.com>
+
+local -a myhosts myhostslist
+
+myhosts=$(cut -f1 -d":" < ~/.myhosts)
+
+_arguments "-c[Connect to host]:hostname:($myhosts)"\
+           "-m[Mount sshfs]:hostname:($myhosts)" \
+           "-l[List hosts]:hostname:" \
+           "-s[Search host\[s\]]:hostname:$2"
