@@ -12,20 +12,20 @@ Download, review, modify vars in script.
 
 If you want autocomletion, then place file _connect-to somewhere in your $fpath. If you don’t want (or don’t have the permission) to add files into a directory in $fpath, you can create a directory in your home directory (for example, .config/zsh/completions/) and prepend that directory to the list in $fpath by adding these commands to your `$HOME/.zshrc`.
 
-`
+```
 fpath=(~/.config/zsh/completions $fpath)
 
 autoload -Uz compinit
 compinit
-`
+```
 
 Place .myhosts in your $HOMEDIR (it's default) and add some your favorite host(-s) in it like in exapmple:
 
-`
+```
 localhost;ssh;alksf@127.0.0.1;My favorite host
 google;browser;https://google.com;Google Search
 router;telnet;192.168.1.1;My Homenet router
-`
+```
 
 `.myhosts` is semicolon delimited csv file. Format of `.myhosts` file:
 
@@ -37,10 +37,10 @@ router;telnet;192.168.1.1;My Homenet router
 Then execute the script
 
 # Usage
-`
+```
 $connect-to [OPTION]/[HOST]
 -c - Connect to host
 -l - List hosts
 -m - Mount host by sshfs
 -s - Search host[-s]
-`
+```
