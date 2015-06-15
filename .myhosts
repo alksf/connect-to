@@ -1,2 +1,4 @@
-localhost:ssh:alksf@127.0.0.1
+localhost;ssh;alksf@127.0.0.1;My favorite host
+google;browser;https://google.com;Google Search
+router;telnet;192.168.1.1;My Homenet router
 

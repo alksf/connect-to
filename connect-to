@@ -3,13 +3,14 @@
 #
 # Connect-to script
 #
-# Version 0.001
+# Version 0.002
 # Written by Aleksey Philippov <alks.philippov@gmail.com>
 #
 
 # Config vars
 myhosts='/home/alksf/.myhosts'
 sshfsdirs='/home/alksf/mnt/sshfs/'
+browser='/usr/bin/iceweasel'
 
 if [ $1 ] ; then
     case  $1 in
@@ -20,18 +21,21 @@ if [ $1 ] ; then
             grep --color=auto -i $2 $myhosts
             ;;   
         '-m')    
-            host=$(grep -i $2 $myhosts | cut -f3 -d":")
-            dirname=$(grep -i $2 $myhosts | cut -f1 -d":")
+            host=$(grep -i $2 $myhosts | cut -f3 -d";")
+            dirname=$(grep -i $2 $myhosts | cut -f1 -d";")
             sshfs $host:/ $sshfsdirs$dirname
             ;;    
         '-c')     
-            host=$(grep -i $2 $myhosts | cut -f3 -d":")
-            method=$(grep -i $2 $myhosts | cut -f2 -d":")
-            $method $host
+            host=$(grep -i $2 $myhosts | cut -f3 -d";")
+            method=$(grep -i $2 $myhosts | cut -f2 -d";")
+            if [ $method = "browser" ]
+            then $browser $host
+            else $method $host
+            fi
             ;;
     esac
 else
-    echo 'ussage: connect-to [КЛЮЧ]/[ХОСТ]'
+    echo 'ussage: connect-to [OPTION]/[HOST]'
     echo '-c - Connect to host'
     echo '-l - List hosts'
     echo '-m - Mount host by sshfs'

@@ -5,7 +5,7 @@
 
 local -a myhosts myhostslist
 
-myhosts=$(cut -f1 -d":" < ~/.myhosts)
+myhosts=$(cut -f1 -d";" < ~/.myhosts)
 
 _arguments "-c[Connect to host]:hostname:($myhosts)"\
            "-m[Mount sshfs]:hostname:($myhosts)" \
