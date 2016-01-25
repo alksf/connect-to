@@ -3,7 +3,7 @@
 #
 # Connect-to script
 #
-# Version 0.002
+# Version 0.003
 # Written by Aleksey Philippov <alks.philippov@gmail.com>
 #
 
@@ -37,6 +37,14 @@ if [ $1 ] ; then
             else $method $host
             fi
             ;;
+        '-k')
+            host=$(grep -i $2 $myhosts | cut -f3 -d";")
+            method=$(grep -i $2 $myhosts | cut -f2 -d";")
+            if [ $method = "ssh" ]
+            then ssh-copy-id $host
+            else echo 'Only SSH hosts supports this feature.'
+            fi
+            ;;
         '-e')
             host=$(grep -i $2 $myhosts | cut -f3 -d";")
             method=$(grep -i $2 $myhosts | cut -f2 -d";")
@@ -53,6 +61,7 @@ else
     echo '-s - Search host[-s]'
     echo '-m - Mount host by sshfs (Only for ssh hosts)'
     echo '-e - Execute command. (Only for ssh hosts)'
+    echo '-k - Use locally available keys to authorise logins on a remote machine'
 fi
 
 
