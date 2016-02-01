@@ -11,4 +11,5 @@ _arguments "-c[Connect to host]:hostname:($myhosts)"\
            "-m[Mount sshfs]:hostname:($myhosts)" \
            "-e[Execute command]:hostname:($myhosts)" \
            "-l[List hosts]:hostname:" \
-           "-s[Search host\[s\]]:hostname:$2"
+           "-s[Search host\[s\]]:hostname:$2" \
+           "-k[Add SSH key]::hostname:($myhosts)"

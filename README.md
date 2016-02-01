@@ -43,4 +43,5 @@ Usage: connect-to [OPTION]/[HOST] [COMMAND]
 -l - List hosts
 -s - Search host[-s]
 -m - Mount host by sshfs (Only for ssh hosts)
--e - Execute command. (Only for ssh hosts)
+-e - Execute command (Only for ssh hosts)
+-k - Use locally available keys to authorise logins on a remote machine (Only for ssh hosts)
